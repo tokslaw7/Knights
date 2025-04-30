@@ -199,8 +199,9 @@ function changeButtonStatus() {
     }
 
     if (gameState.whoseTurn === 2) {
-        animatePlayer();
+        animatePlayer("playerOneSprite", "playerTwoSprite");
         changeButtonStatus();
         changePlayer();
     }
+    
 }
