@@ -99,13 +99,13 @@ button {
 
 
 /* player one button  */
-/* #playerOneAttack{
+#playerOneAttack{
     background-color: cyan;
-    background: linear-gradient(45deg, #ff6b6b, #556270);
+    background: linear-gradient(45deg, #ff6b6b, #78b4f4);
     cursor: pointer;
     transition: 0.3s;
 }
 
 .glow {
     box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
-} */
+}

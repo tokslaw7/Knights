@@ -10,7 +10,7 @@ let gameState = {
 // function that considers which player's turn it is and then
 // changes the UI accordingly
 function changePlayer() {
-    // if the current player is player 1 at the end of a move
+    //if the current player is player 1 at the end of a move
     if (gameState.whoseTurn === 1) {
         let playerTwoHealth = document.getElementById("playerTwoHealth");
         // conversts the innerHTML from string to a number and stores it in a variable
@@ -38,8 +38,9 @@ function changePlayer() {
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
-    }
+    }  
 }
+
 
 // if a player's health reaches 0 at the end of a turn, the game ends
 // and the winner is announced
@@ -175,11 +176,16 @@ function attackPlayerOne() {
 
         if (playerOneHealth <= 0) {
             playerOneHealth = 0;
-            gameState.gameOver = true;
+            
             playerOneHealth.innerHTML = playerOneHealthNum;
+            gameState.gameOver = true;
             gameOver();
         } else {
-            changePlayer();
+             //changePlayer();
+            playerOneHealth.innerHTML = playerOneHealthNum;
+            gameState.whoseTurn = 1;
+            let playerName = document.getElementById("playerName");
+            playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
     }
         function changeButtonStatus() {
