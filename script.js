@@ -24,6 +24,7 @@ function changePlayer() {
         if (playerTwoHealthNum <= 0) {
             // ensures health does not dig into the negative
             playerTwoHealth = 0;
+            playerTwoHealth.innerHTML = playerTwoHealthNum;
             // ends the game
             gameOver();
         }
@@ -51,6 +52,8 @@ function gameOver() {
 
     let gameOverScreen = document.getElementById("gameOverScreen");
     gameOverScreen.style = "display: flex; flex-direction: column;";
+    // winning visual cue
+    document.body.classList.add("game-over");
 }
 
 // function that allows the player two attack button to reduce the player two's
@@ -139,9 +142,65 @@ function attackPlayerOne() {
 
         if (playerOneHealth <= 0) {
             playerOneHealth = 0;
+            gameState.gameOver = true;
+            playerOneHealth.innerHTML = playerOneHealthNum;
             gameOver();
         } else {
             changePlayer();
         }
+    }
+
+function changeButtonStatus() {
+    let playerOneAttackButton = document.getElementById("playerOneAttack");
+    playerOneAttackButton.disabled = false;
+    playerOneAttackButton.classList.add("active");
+    playerOneAttackButton.classList.remove("inactive");
+
+    let playerTwoAttackButton = document.getElementById("playerTwoAttack");
+    playerTwoAttackButton.disabled = true;
+    playerTwoAttackButton.classList.add("inactive");
+    playerTwoAttackButton.classList.remove("active");
+}
+
+    function animatePlayer() {
+        let playerOneFrames = [
+            "./images/R_Idle.png",
+            "./images/R_Attack.png"
+        ];
+
+        let playerSprite = document.getElementById("playerTwoSprite");
+        playerSprite.src = playerOneFrames[1];
+        
+        playerSprite.classList.remove("idle");
+        playerSprite.classList.add("attack");
+
+        // grabs the enemy sprite
+        let enemySprite = document.getElementById("playerOneSprite");
+        let enemyDamage = document.getElementById("SFX_PlayerDamage");
+        // removes the 'idle' class from the enemy sprite
+        enemySprite.classList.remove("idle");
+        // adds the 'attack' class to the enemy sprite
+        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        enemySprite.classList.add("damage");
+        // sound that plays when enemy takes damage
+        enemyDamage.play();
+
+       
+        function changePlayerOneSprite() {
+            enemySprite.classList.remove("damage");
+            enemySprite.classList.add("idle");
+
+            playerSprite.src = playerOneFrames[0];
+            playerSprite.classList.remove("attack");
+            playerSprite.classList.add("idle");
+        }
+
+        setTimeout(changePlayerOneSprite, 350);
+    }
+
+    if (gameState.whoseTurn === 2) {
+        animatePlayer();
+        changeButtonStatus();
+        changePlayer();
     }
 }

@@ -3,10 +3,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url('./images/advert.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #gameOverScreen {
     display: none;
+    background-color: red;
 }
 
 #fightingSpace {
@@ -80,3 +85,31 @@ button {
     font-weight: 600;
     font-size: 24px;
 }
+
+.game-over {
+    filter: grayscale(0.2) brightness(0.8);
+    animation: flicker 0.8s ease-in-out infinite;
+}
+
+#winningPlayer {
+    background-color: rgb(0, 255, 251);
+}
+
+
+#playerTurn {
+    background-color: yellow;
+}
+
+
+
+/* player one button  */
+/* #playerOneAttack{
+    background-color: cyan;
+    background: linear-gradient(45deg, #ff6b6b, #556270);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.glow {
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+} */
